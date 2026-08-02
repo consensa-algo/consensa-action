@@ -1,0 +1,40 @@
+name: "Consensa Clearance"
+description: >
+  Pay a micro-fee for consented, attributed use of your open-source
+  dependencies. Produces an on-chain consent + attribution receipt whose
+  value splits to maintainers, the commons, and the provider — verified on
+  Algorand.
+author: "Consensa"
+branding:
+  icon: "check-circle"
+  color: "green"
+
+inputs:
+  endpoint:
+    description: "Consensa clearance endpoint base URL (e.g. https://api.consensa.example)"
+    required: true
+  manifest_path:
+    description: "Path to the dependency manifest (v1 supports package.json)"
+    required: false
+    default: "package.json"
+  spend_cap_usd:
+    description: >
+      Maximum USD this repository may spend per rolling 24h, enforced against
+      the payer wallet's own on-chain history BEFORE paying. Raising it above
+      the conservative default is an explicit opt-in decision.
+    required: false
+    default: "1.00"
+
+outputs:
+  payment_tx_id:
+    description: "Confirmed payment transaction id"
+  settle_tx_id:
+    description: "Settlement/allocation transaction id (empty on the atomic path)"
+  receipt_url:
+    description: "Reconciliation URL for this receipt"
+  status:
+    description: "settled | allocation-pending | pending"
+
+runs:
+  using: "node20"
+  main: "dist/index.cjs"
