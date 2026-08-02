@@ -56235,8 +56235,6 @@ var XHDWalletAPI = class {
 var xhd = new XHDWalletAPI();
 
 // action/src/main.ts
-var ALGOD_URL = process.env.ALGOD_URL || "https://testnet-api.algonode.cloud";
-var INDEXER_URL = process.env.INDEXER_URL || "https://testnet-idx.algonode.cloud";
 function input(name, fallback) {
   const v = process.env[`INPUT_${name.toUpperCase()}`] ?? fallback;
   if (v === void 0) fail(`missing required input: ${name}`);
@@ -56288,8 +56286,6 @@ async function main() {
   }
   if (!(capUsd > 0)) fail("spend_cap_usd must be a positive number");
   const payer = esm_default.mnemonicToSecretKey(mnemonic);
-  const algod = new esm_default.Algodv2("", ALGOD_URL, "");
-  const indexer = new esm_default.Indexer("", INDEXER_URL, "");
   const manifestRaw = (0, import_node_fs.readFileSync)(manifestPath, "utf-8");
   const manifest = JSON.parse(manifestRaw);
   const body = JSON.stringify({
@@ -56306,6 +56302,11 @@ async function main() {
     fail(`expected 402 terms from endpoint, got ${first.status}: ${await first.text()}`);
   }
   const terms = decode402(first.headers);
+  const isMainnet = terms.network === ALGORAND_MAINNET_CAIP2;
+  const algodUrl = process.env.ALGOD_URL || (isMainnet ? DEFAULT_ALGOD_MAINNET : DEFAULT_ALGOD_TESTNET);
+  const indexerUrl = process.env.INDEXER_URL || (isMainnet ? "https://mainnet-idx.algonode.cloud" : "https://testnet-idx.algonode.cloud");
+  const algod = new esm_default.Algodv2("", algodUrl, "");
+  const indexer = new esm_default.Indexer("", indexerUrl, "");
   const priceMicro = Number(terms.amount);
   const priceUsd = priceMicro / 1e6;
   console.log(
