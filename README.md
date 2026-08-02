@@ -30,7 +30,7 @@ jobs:
       - name: Consensa clearance
         uses: consensa-algo/consensa-action@v1
         with:
-          endpoint: https://consensa-endpoint-production.up.railway.app/v1/clearance
+          endpoint: https://consensa-endpoint-production.up.railway.app
           manifest_path: package.json
           spend_cap_usd: "1.00"  # raising this is an explicit decision
         env:
@@ -41,7 +41,7 @@ jobs:
 
 | Name | Required | Default | Description |
 |---|---|---|---|
-| `endpoint` | yes | — | Consensa clearance endpoint base URL |
+| `endpoint` | yes | — | Consensa clearance endpoint **host only**, e.g. `https://consensa-endpoint-production.up.railway.app` — do **not** include `/v1/clearance`; the Action appends it itself |
 | `manifest_path` | no | `package.json` | Path to the dependency manifest (v1 supports `package.json`) |
 | `spend_cap_usd` | no | `1.00` | Max USD this repository may spend per rolling 24h, enforced on-chain before paying |
 
