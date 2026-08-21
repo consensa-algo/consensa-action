@@ -11,7 +11,7 @@ branding:
 
 inputs:
   endpoint:
-    description: "Consensa clearance endpoint base URL (e.g. https://api.consensa.example)"
+    description: "Consensa clearance endpoint base URL, host only (e.g. https://consensa-endpoint-production.up.railway.app)"
     required: true
   manifest_path:
     description: "Path to the dependency manifest (v1 supports package.json)"
