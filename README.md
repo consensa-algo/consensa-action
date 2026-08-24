@@ -53,3 +53,32 @@ jobs:
 | `settle_tx_id` | Settlement/allocation transaction id (empty on the atomic path) |
 | `receipt_url` | Reconciliation URL for this receipt |
 | `status` | `settled` \| `allocation-pending` \| `pending` |
+
+## Licence
+
+This action's own code is MIT — see [LICENSE](LICENSE).
+
+`dist/index.cjs` is a bundle containing 21 third-party packages. Their copyright
+notices and licence texts are reproduced in
+[dist/THIRD-PARTY-NOTICES.txt](dist/THIRD-PARTY-NOTICES.txt), because the bundler
+does not preserve them inside the bundle itself.
+
+All 21 are permissive — MIT, Apache-2.0, ISC, BSD-3-Clause and Unlicense. **None is
+copyleft**, and using this action imposes no source-disclosure obligation on you.
+
+### If you are pinned to `@v1`
+
+**`@v1` ships the same bundle without those notices.** Distributing it therefore does
+not satisfy the attribution terms of MIT and Apache-2.0, which require the copyright
+notices and licence text to accompany the code. `@v1.1` is identical in behaviour —
+the bundle is byte-for-byte the same — and adds only the notices and this licence
+information.
+
+**Move to `@v1.1`:**
+
+```yaml
+- uses: consensa-algo/consensa-action@v1.1
+```
+
+`@v1` is left in place and still works; it is not withdrawn. The choice is yours, and
+this section exists so it can be an informed one.

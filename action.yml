@@ -38,3 +38,11 @@ outputs:
 runs:
   using: "node20"
   main: "dist/index.cjs"
+
+# Licensing
+#   This action's own code is MIT — see LICENSE.
+#   dist/index.cjs is a bundle. The bundler does not preserve the copyright
+#   notices of what it bundles, so they are reproduced in
+#   dist/THIRD-PARTY-NOTICES.txt — 21 packages, all permissive (MIT, Apache-2.0,
+#   ISC, BSD-3-Clause, Unlicense), no copyleft.
+#   Regenerate with `npx tsx action/build-notices.ts` after every rebuild.
