@@ -1,5 +1,12 @@
 # Consensa Clearance (GitHub Action)
 
+> **New here?** Wiring up CI/CD — you're in the right place. Building an AI agent
+> instead? Start with
+> [consensa-mcp](https://github.com/consensa-algo/consensa-mcp#readme). Just want to
+> see it work, free, no wallet? Jump to
+> [Try it free](https://github.com/consensa-algo/consensa-mcp#try-it-free--no-wallet-no-keys-right-now)
+> in the MCP README.
+
 Consensa Clearance is a GitHub Action that pays a micro-fee to clear your repository's open-source dependencies through Consensa on Algorand, producing an on-chain consent + attribution receipt on every release.
 Every payment settles atomically into a four-way split — provider 80%, upstream maintainers' escrow 11% (claimable, per-dependency attribution on-chain), commons 7%, protocol 2% — capped by a per-repository spending limit checked against the payer wallet's own on-chain history *before* every payment, not trusted from local or server-side state.
 The settlement contract's conservation invariant (payment == provider + upstream + commons + protocol) is enforced on-chain at every transaction and covered by property-based fuzz testing — proven, not merely asserted.
